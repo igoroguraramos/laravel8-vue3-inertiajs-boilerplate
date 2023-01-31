@@ -18,4 +18,4 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'title' => "InertiaJs Instalado com Sucesso"
     ]);
-});
+})->name('welcome');
