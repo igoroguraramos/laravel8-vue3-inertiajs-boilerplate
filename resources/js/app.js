@@ -1,11 +1,13 @@
-import { createApp } from 'vue';
-import Welcome from './components/Welcome.vue';
-const app = createApp({});
+import { createApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
 
-//Registrando o componente Welcome localizado em resources/js/components/Welcome.vue
-app.component('Welcome', Welcome);
-
-// div de id = app localizada em resources/views/welcome.blade.php
-app.mount('#app');
+createInertiaApp({
+  resolve: (name) => require(`./Pages/${name}`),
+  setup({ el, App, props, plugin }) {
+    createApp({ render: () => h(App, props) })
+      .use(plugin)
+      .mount(el)
+  },
+})
 
 require('./bootstrap');
